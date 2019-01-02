@@ -1,0 +1,53 @@
+  <h2>Countries</h2>
+  <div class="row">
+      <span class="input-group-addon"> Continent</span>
+          <select class="form-control" [(ngModel)]="sortContinentSearch">
+              <option value="Africa">Africa</option>
+              <option value="Asia">Asia</option>
+              <option Value="Europe">Europe</option>
+              <option value="Oceania">Oceania</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+          </select>
+  </div>
+
+  <div class="form-group col-lg-5">
+          <div class="input-group">
+            <span class="input-group-addon">Min. Population</span> 
+            <input type="number" name="larger" placeholder="Input > than" [(ngModel)]="searchValue">
+
+            <button (click)="searchMin()">Min</button>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon">Max. Population</span>
+            <input type="number" name="smaller" placeholder="Input < than" [(ngModel)]="searchValue">
+            <button (click)="searchMax()">Max</button>
+          </div>
+
+        
+        </div>
+        <input [(ngModel)]="searchText" (ngModelChange)="search()" placeholder="country">
+        <input [(ngModel)]="searchTextGov" (ngModelChange)="searchGov()" placeholder="Search Government">
+
+        <button (click)="clearsearch()">Clear</button>
+
+
+
+  <table border="1">
+      <!-- ADD HEADERS -->
+      <tr>
+          <th><a (click)="send()">Name</a></th>
+          <th><a (click)="send3()">Population</a></th>
+          <th><a (click)="send4()">LifeExpectancy</a></th>
+          <th><a (click)="send1()">GovernmentForm</a></th>
+          <th><a (click)="send2()">Head of State</a></th>
+      </tr>
+      <tr *ngFor="let country of CountriesDisplay  | govsearch: searchTextGov | sortContinent: sortContinentSearch ">
+          <td><a [routerLink]="['/country', country.Code]">{{ country.Name }}</a></td>
+          <td>{{ country.Population }}</td>
+          <td>{{ country.LifeExpectancy }}</td>
+          <td>{{ country.GovernmentForm }}</td>
+          <td>{{ country.HeadOfState }}</td>
+  </tr>
+  </table>

@@ -1,0 +1,54 @@
+<button (click)="goBack()">Return</button>
+<div *ngIf="country">
+  <ul>
+  <li> <i>Country: </i>{{ country.Name }}</li>
+  <li> <i>GovernmentForm: </i> {{ country.GovernmentForm }}</li>
+  <li> <i>LocalName: </i> {{ country.LocalName}}</li>
+  <li> <i>Continent: </i> {{ country.Continent}}</li>
+  <li> <i>Region: </i> {{ country.Region}}</li>
+  <li> <i>SurfaceArea: </i> {{ country.SurfaceArea}}</li>
+  <li> <i>Population: </i> {{ country.Population}}</li>
+  <li> <i>GNP: </i> {{ country.GNP}}</li>
+  <li> <i>HeadOfState: </i> {{ country.HeadOfState}}</li>
+
+  <ng-container *ngFor="let city of cities">
+      <li *ngIf="city.ID == country.Capital"> <i> Capital City: </i>{{ city.Name }}</li>
+    </ng-container>
+  </ul>
+</div>  
+
+<img *ngIf="country" src="../assets/flaggor/{{country.Code}}.jpg">
+<h3>Languages</h3>
+<ul *ngFor="let language of language">
+    <li>{{ language.Language }}</li>
+  </ul>
+
+<!----<h1 *ngIf="country">Loading...</h1>
+
+<ul class="list-view">
+  <li *ngFor="let country of Countries">
+    <a [routerLink]="['/country', code]">
+      <h1>{{ country.Name }}</h1>
+    </a>
+  </li>
+</ul> -->
+<table border="1">
+    <!-- ADD HEADERS -->
+    <tr>
+        <th>Name</th>
+        <th>District</th>
+        <th>Population</th>
+    </tr>
+    <tr *ngFor="let city of cities">
+        <td>{{ city.Name }}</td>
+        <td>{{ city.District}}</td>
+        <td>{{ city.Population}}</td>
+</tr>
+</table>
+
+<!----<div *ngIf="cities">
+  
+  <p>{{ cities.CountryCode }}</p>
+  <p>{{ cities.Name }}</p>
+</div>> -->
+
